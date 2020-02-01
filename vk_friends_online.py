@@ -27,13 +27,14 @@ def get_user_password():
     return user_password
 
 
-def connect_vk_api(login,
-                   password):
-    api = vk_requests.create_api(app_id=APP_ID,
-                                 login=login,
-                                 password=password,
-                                 api_version='5.101',
-                                 scope='friends')
+def connect_vk_api(login, password):
+    api = vk_requests.create_api(
+        app_id=APP_ID,
+        login=login,
+        password=password,
+        api_version='5.101',
+        scope='friends',
+    )
     return api
 
 
@@ -49,8 +50,8 @@ def output_friends_to_console(friends_online):
     print('Number of friends online : {}'.format(friends_online_number))
 
     if friends_online_number > 0:
-        for iterator, friend in enumerate(friends_online, start=1):
-            print('{}: {} {}'.format(iterator,
+        for index, friend in enumerate(friends_online, start=1):
+            print('{}: {} {}'.format(index,
                                      friend['first_name'],
                                      friend['last_name']))
 
