@@ -38,22 +38,21 @@ def connect_vk_api(login,
 
 
 def get_online_friends(api):
-    f = api.friends.getOnline()
-    friends_online = (api.users.get(user_ids=f))
+    online_friends_ids = api.friends.getOnline()
+    online_friends_info = api.users.get(user_ids=online_friends_ids)
 
-    return friends_online
+    return online_friends_info
 
 
 def output_friends_to_console(friends_online):
     friends_online_number = len(friends_online)
     print('Number of friends online : {}'.format(friends_online_number))
-    if friends_online_number == 0:
-        exit
 
-    for idx, friend in enumerate(friends_online, start=1):
-        print('{}: {} {}'.format(idx,
-                                 friend['first_name'],
-                                 friend['last_name']))
+    if friends_online_number > 0:
+        for iterator, friend in enumerate(friends_online, start=1):
+            print('{}: {} {}'.format(iterator,
+                                     friend['first_name'],
+                                     friend['last_name']))
 
 
 if __name__ == '__main__':
